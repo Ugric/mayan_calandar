@@ -26,6 +26,7 @@ fn main() {
     let mut days = differnece as i32;
     let mut year: u16 = 2000;
     let mut month: &str;
+    
     loop {
         month = "January";
         let remove = 31;

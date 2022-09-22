@@ -21,81 +21,21 @@ difference = (current - epoch)
 year = 2000
 days = difference
 
-month = ""
+month = 0
 
-while True:
-    month = "January"
-    remove = 31
-    if days - remove < 0:
-        break
-    days -= remove
+tobreak = False
 
-    month = "February"
-    remove = 29 if (year % 100 != 0 and year %
-                    4 == 0) or (year % 400 == 0) else 28
-    if days - remove < 0:
-        break
-    days -= remove
+while not tobreak:
+    month_times = [31, (29 if (year % 100 != 0 and year %
+                    4 == 0) or (year % 400 == 0) else 28), 31,30,31,30,31,31, 30,31,30,31]
+    tobreak = True
+    for i in range(len(month_times)):
+        month = i
+        if days - month_times[i] < 0:
+            break
+        days -= month_times[i]
+    else:
+        year += 1
+        tobreak = False
 
-    month = "March"
-    remove = 31
-    if days - remove < 0:
-        break
-    days -= remove
-
-    month = "April"
-    remove = 30
-    if days - remove < 0:
-        break
-    days -= remove
-
-    month = "May"
-    remove = 31
-    if days - remove < 0:
-        break
-    days -= remove
-
-    month = "June"
-    remove = 30
-    if days - remove < 0:
-        break
-    days -= remove
-
-    month = "July"
-    remove = 31
-    if days - remove < 0:
-        break
-    days -= remove
-
-    month = "August"
-    remove = 31
-    if days - remove < 0:
-        break
-    days -= remove
-
-    month = "September"
-    remove = 30
-    if days - remove < 0:
-        break
-    days -= remove
-
-    month = "October"
-    remove = 31
-    if days - remove < 0:
-        break
-    days -= remove
-
-    month = "November"
-    remove = 30
-    if days - remove < 0:
-        break
-    days -= remove
-
-    month = "December"
-    remove = 31
-    if days - remove < 0:
-        break
-    days -= remove
-    year += 1
-
-print(days+1, month, year)
+print(days+1, month+1, year)
